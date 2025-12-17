@@ -1,23 +1,514 @@
+
 /**
  * CSS files with the .module.css suffix will be treated as CSS modules
  * and scoped locally.
  */
 
+/* Hero Section */
 .heroBanner {
-  padding: 4rem 0;
+  padding: 8rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #B3F0AA 0%, #7CC68E 100%);
+  color: #0F172A;
+  margin-bottom: 4rem;
+  animation: fadeInUp 1s ease-out;
+  position: relative;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+.heroBanner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes staggerIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  animation: fadeInUp 1s ease-out 0.2s both;
+  color: #0F172A;
+  line-height: 1.1;
+}
+
+.heroSubtitle {
+  font-size: 1.6rem;
+  margin-bottom: 2.5rem;
+  animation: fadeInUp 1s ease-out 0.4s both;
+  color: #0F172A;
+  opacity: 0.8;
 }
 
 .buttons {
   display: flex;
+  gap: 2rem;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.primaryButton {
+  background: linear-gradient(135deg, #3E8E4E 0%, #7CC68E 100%) !important;
+  color: white !important;
+  border: none !important;
+  padding: 1.3rem 3rem !important;
+  border-radius: 16px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.4s ease !important;
+  box-shadow: 0 8px 25px rgba(62, 142, 78, 0.3) !important;
+  position: relative;
+  overflow: hidden !important;
+  font-size: 1.2rem !important;
+}
+
+.primaryButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.8s;
+}
+
+.primaryButton:hover::before {
+  left: 100%;
+}
+
+.primaryButton:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 15px 35px rgba(179, 240, 170, 0.4) !important;
+  letter-spacing: 1px !important;
+}
+
+.secondaryButton {
+  background: rgba(62, 142, 78, 0.2) !important;
+  color: #3E8E4E !important;
+  border: 2px solid rgba(62, 142, 78, 0.5) !important;
+  padding: 1.3rem 3rem !important;
+  border-radius: 16px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.4s ease !important;
+  font-size: 1.2rem !important;
+}
+
+.secondaryButton:hover {
+  background: rgba(62, 142, 78, 0.3) !important;
+  border-color: #3E8E4E !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 25px rgba(62, 142, 78, 0.3) !important;
+  letter-spacing: 1px !important;
+}
+
+/* Features Section */
+.features {
+  padding: 6rem 0;
+  background: #0F172A;
+  position: relative;
+
+  z-index: 1;
+}
+
+.features::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(179, 240, 170, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(124, 198, 142, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 50% 50%, rgba(62, 142, 78, 0.08) 0%, transparent 50%);
+              z-index: 0;
+              
+  pointer-events: none;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+  color: white;
+  position: relative;
+  text-align: center;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 8px;
+  background: linear-gradient(135deg, #B3F0AA 0%, #7CC68E 100%);
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(179, 240, 170, 0.4);
+}
+
+.bookDescription {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  font-size: 1.4rem;
+  line-height: 1.9;
+  color: #CBD5E1;
+  text-align: center;
+  font-weight: 500;
+  position: relative;
+  z-index: 10;
+  
+}
+
+.metricIcon {
+  margin-bottom: 2.5rem;
+  transition: transform 0.4s ease;
+  width: 70px;
+  height: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #B3F0AA 0%, #7CC68E 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metricIcon svg {
+  width: 36px;
+  height: 36px;
+  fill: white;
+  stroke: white;
+}
+
+.metricIcon:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.metricTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: white;
+}
+
+.metricDescription {
+  font-size: 1.2rem;
+  color: #CBD5E1;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+/* Chapters Section */
+.chaptersSection {
+  padding: 6rem 0;
+  background: #0F172A;
+  position: relative;
+}
+
+.chaptersSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 10% 90%, rgba(179, 240, 170, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 90% 10%, rgba(124, 198, 142, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 50% 20%, rgba(62, 142, 78, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.chaptersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.chapterCard {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 24px;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(179, 240, 170, 0.2);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 35px -5px rgba(124, 198, 142, 0.1), 0 8px 15px -6px rgba(62, 142, 78, 0.1);
+  margin-bottom: 2rem;
+  animation: staggerIn 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
+
+.chapterCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #B3F0AA 0%, #7CC68E 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.chapterCard::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(179, 240, 170, 0.1), rgba(124, 198, 142, 0.1));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  border-radius: 24px;
+}
+
+.chapterCard:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 30px 50px -10px rgba(179, 240, 170, 0.3), 0 20px 35px -5px rgba(124, 198, 142, 0.2);
+}
+
+.chapterCard:hover::before {
+  transform: scaleX(1);
+}
+
+.chapterCard:hover::after {
+  opacity: 1;
+}
+
+.chapterContent {
+  position: relative;
+  z-index: 2;
+}
+
+.chapterHeader {
+  margin-bottom: 1.8rem;
+  position: relative;
+}
+
+.chapterTitle {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 1.2rem 0;
+  position: relative;
+  line-height: 1.4;
+}
+
+.chapterTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #B3F0AA 0%, #7CC68E 100%);
+  border-radius: 2px;
+}
+
+.chapterDescription {
+  font-size: 1.2rem;
+  color: #CBD5E1;
+  line-height: 1.7;
+  margin: 0 0 1.8rem 0;
+  font-weight: 500;
+}
+
+.chapterFooter {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.readLink {
+  color: #B3F0AA;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+  position: relative;
+  padding-right: 2.2rem;
+  transition: all 0.3s ease;
+}
+
+.readLink::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 2.2rem;
+  height: 2px;
+  background: linear-gradient(90deg, #B3F0AA 0%, #7CC68E 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.readLink::after {
+  content: '→';
+  position: absolute;
+  right: 0;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  font-size: 1.4rem;
+  color: #7CC68E;
+}
+
+.readLink:hover {
+  transform: translateX(8px);
+}
+
+.readLink:hover::before {
+  opacity: 1;
+}
+
+.readLink:hover::after {
+  transform: translateX(6px) rotate(10deg);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 5rem 1rem;
+  }
+
+  .heroTitle {
+    font-size: 3rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.4rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .primaryButton, .secondaryButton {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+
+  .bookDescription {
+    font-size: 1.2rem;
+  }
+
+  .metricTitle {
+    font-size: 1.7rem;
+  }
+
+  .chaptersGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .chapterCard {
+    padding: 2.5rem;
+  }
+
+  .chapterTitle {
+    font-size: 1.6rem;
+  }
+
+  .chapterDescription {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .heroBanner {
+    padding: 4rem 1rem;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.2rem;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0F172A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #B3F0AA 0%, #3E8E4E 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0F172A;
+}
+.features,
+.features *,
+.bookDescription {
+  filter: none !important;
+  opacity: 1 !important;
 }

@@ -1,0 +1,40 @@
+# Constitution
+
+sp.constitution
+parameters:
+  book_title: "Physical AI & Humanoid Robotics"
+  chapters:
+    - "Introduction to Physical AI & Humanoid Robotics"
+    - "ROS 2 & Robotic Nervous System"
+    - "Simulations: Gazebo & Unity Digital Twin"
+    - "NVIDIA Isaac AI-Robot Brain"
+    - "Vision-Language-Action & Conversational Robotics"
+    - "Capstone Project: Autonomous Humanoid"
+  style:
+    - concise
+    - clear for AI students
+    - include code snippets, diagrams, tables
+  output:
+    - Table of Contents
+    - Chapter outline with subtopics (5-7 per chapter)
+notes:
+  - Each chapter self-contained
+  - Include exercises/questions per chapter
+
+
+
+- Accuracy: Factually correct from textbook
+- Helpfulness: Assist with robotics/AI concepts
+- Clarity: Accessible yet technical
+- Relevance: Focus on Physical AI/humanoid content
+
+Guidelines:
+- Reference chapters/sections
+- Acknowledge knowledge limits
+- Maintain professional tone
+- Suggest related topics
+
+Boundaries:
+- Stay within textbook scope
+- Don't provide external info
+- Indicate inferences clearly

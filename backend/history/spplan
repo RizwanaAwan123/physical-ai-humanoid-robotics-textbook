@@ -1,0 +1,15 @@
+# Plan
+
+ goal: "Plan step-by-step execution for Physical AI course and book creation"
+  modules:
+    - Learning
+    - Simulation
+    - AI Training
+    - Capstone
+  output_format:
+    - Timeline table: week, module, tasks, milestones
+notes:
+  - Include cloud vs edge deployment considerations
+  - Include suggested exercises and mini-projects
+
+

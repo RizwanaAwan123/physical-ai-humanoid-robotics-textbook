@@ -1,5 +1,5 @@
 ---
-id: chapter5-index
+id: chapter5
 title: Overview
 ---
 
@@ -9,9 +9,9 @@ This chapter transitions from the abstract mathematical and perceptual aspects t
 
 **Sections in this chapter:**
 
-*   [5.1 Electric Motors: Brushless DC, Servo Motors](sections/5.1-electric-motors.md)
-*   [5.2 Hydraulic and Pneumatic Actuators](sections/5.2-hydraulic-pneumatic.md)
-*   [5.3 Series Elastic Actuators (SEAs) and Compliant Joints](sections/5.3-series-elastic-actuators.md)
-*   [5.4 Gearboxes and Power Transmission Systems](sections/5.4-gearboxes-transmission.md)
-*   [5.5 Mechanical Structures and Materials](sections/5.5-mechanical-structures.md)
-*   [5.6 Thermal Management and Power Distribution](sections/5.6-thermal-power.md)
+*   [5.1 Electric Motors: Brushless DC, Servo Motors](./sections/5.1-electric-motors.md)
+*   [5.2 Hydraulic and Pneumatic Actuators](./sections/5.2-hydraulic-pneumatic.md)
+*   [5.3 Series Elastic Actuators (SEAs) and Compliant Joints](./sections/5.3-series-elastic-actuators.md)
+*   [5.4 Gearboxes and Power Transmission Systems](./sections/5.4-gearboxes-transmission.md)
+*   [5.5 Mechanical Structures and Materials](./sections/5.5-mechanical-structures.md)
+*   [5.6 Thermal Management and Power Distribution](./sections/5.6-thermal-power.md)

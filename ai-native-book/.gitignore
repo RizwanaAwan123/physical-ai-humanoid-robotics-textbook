@@ -1,0 +1,12 @@
+# Node modules (for Docusaurus)
+node_modules/
+my-website/node_modules/
+
+# Build folders (generated site)
+my-website/build/
+
+# Optional system files
+.DS_Store
+Thumbs.db
+
+TODO.md

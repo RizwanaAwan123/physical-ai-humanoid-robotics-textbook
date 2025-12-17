@@ -28,6 +28,20 @@ const config: Config = {
   projectName: 'physical-ai-book', // Usually your repo name.
 
   onBrokenLinks: 'warn', // Warn instead of throw for missing sections
+  onBrokenMarkdownLinks: 'warn',
+
+  // Additional configuration for proxying API requests during development
+  scripts: [],
+  clientModules: [],
+
+  plugins: [
+    './src/plugins/docusaurus-api-proxy-plugin',
+  ],
+
+  themes: [],
+
+  // Note: Docusaurus doesn't support devServer proxy configuration directly
+  // API proxying is handled via src/setupProxy.js
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -87,6 +101,11 @@ const config: Config = {
           label: 'Read the Book',
         },
         {
+          to: '/chat',
+          label: '🤖 Chat',
+          position: 'left',
+        },
+        {
           href: 'https://github.com/your-organization/physical-ai-book',
           label: 'GitHub',
           position: 'right',
@@ -101,11 +120,11 @@ const config: Config = {
           items: [
             {
               label: 'Start Reading',
-              to: '/docs/title-page',
+              to: 'docs/preface',
             },
             {
               label: 'Preface',
-              to: '/docs/preface',
+              to: 'docs/preface',
             },
           ],
         },
@@ -114,15 +133,23 @@ const config: Config = {
           items: [
             {
               label: 'Introduction',
-              to: '/docs/chapter1/chapter1-index',
+              to: 'docs/chapter1',
             },
             {
               label: 'Mathematics',
-              to: '/docs/chapter2/chapter2-index',
+              to: 'docs/chapter2-index',
             },
             {
               label: 'Kinematics & Dynamics',
-              to: '/docs/chapter3/chapter3-index',
+              to: 'docs/chapter3',
+            },
+            {
+              label: 'Sensing & Perception',
+              to: 'docs/chapter4-index',
+            },
+            {
+              label: 'Actuation & Design',
+              to: 'docs/chapter5',
             },
           ],
         },

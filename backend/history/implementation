@@ -1,0 +1,42 @@
+# Implementation
+
+parameters:
+  tasks: all from sp.task
+  output_format:
+    - Step-by-step instructions per task
+    - Include code (ROS 2, Gazebo, Isaac, Python)
+    - Hardware setup (Jetson, RealSense, mic)
+    - Cloud vs Edge deployment
+    - Troubleshooting tips
+notes:
+  - Each task: Objective, Inputs, Output, Commands, Testing, Optional enhancements
+  - Examples: 
+      - ROS2: ros2 run <pkg> <node>, ros2 topic list
+      - Gazebo: gazebo <world>.world, spawn_entity.py -entity <robot>
+      - Isaac: python3 launch_simulation.py --robot <robot>, vslam_launch.py
+  - Hardware: flash Jetson, calibrate RealSense, test mic
+  - Troubleshooting: check ros2 doctor, reduce sim graphics, recalibrate VSLAM
+
+  
+
+Pipeline:
+- Data Ingestion: Load and process chapters
+- Text Chunking: 500-700 token chunks with overlap
+- Embeddings: Sentence-transformers model
+
+Backend:
+- FastAPI: Async endpoints, CORS, validation
+- RAG: Similarity search, response generation
+- Vector DB: Qdrant integration, filtering
+
+Frontend:
+- Chat: Real-time comm, history, typing indicators
+- Search: Semantic, context-aware queries
+
+Deployment:
+- Production: Env configs, cloud integration
+- Performance: Caching, async processing
+
+QA:
+- Testing: Unit, integration, end-to-end
+- Validation: Accuracy, UX, security

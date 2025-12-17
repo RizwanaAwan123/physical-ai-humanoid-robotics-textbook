@@ -18,14 +18,13 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
-            to="/docs/title-page">
+            className={clsx('button button--secondary button--lg', styles.primaryButton)}
+            to="docs/preface">
             Start Reading
           </Link>
           <Link
-            className="button button--outline button--secondary button--lg"
-            to="/docs/preface"
-            style={{marginLeft: '1rem'}}>
+            className={clsx('button button--outline button--secondary button--lg', styles.secondaryButton)}
+            to="docs/preface">
             View Preface
           </Link>
         </div>
@@ -81,47 +80,56 @@ function ChaptersList() {
     {
       title: 'Chapter 1: Introduction to Physical AI',
       description: 'Defining Physical AI, historical evolution, and the humanoid imperative',
-      link: '/docs/chapter1/chapter1-index',
+      link: 'docs/chapter1',
     },
     {
       title: 'Chapter 2: Essential Mathematics',
       description: 'Linear algebra, calculus, quaternions, and control theory fundamentals',
-      link: '/docs/chapter2/chapter2-index',
+      link: 'docs/chapter2-index',
     },
     {
       title: 'Chapter 3: Kinematics and Dynamics',
       description: 'Forward and inverse kinematics, robot dynamics, balance, and stability',
-      link: '/docs/chapter3/chapter3-index',
+      link: 'docs/chapter3',
     },
     {
       title: 'Chapter 4: Sensing and Perception',
       description: 'Proprioception, exteroception, sensor fusion, and computer vision',
-      link: '/docs/chapter4/chapter4-index',
+      link: 'docs/chapter4-index',
     },
     {
       title: 'Chapter 5: Actuation and Mechanical Design',
       description: 'Electric motors, actuators, mechanical structures, and power systems',
-      link: '/docs/chapter5/chapter5-index',
+      link: 'docs/chapter5',
     },
   ];
 
   return (
-    <section style={{padding: '4rem 0', background: 'var(--ifm-background-surface-color)'}}>
+    <section className={styles.chaptersSection}>
       <div className="container">
         <div className="text--center">
-          <Heading as="h2">Table of Contents</Heading>
+          <Heading as="h2" className={styles.sectionTitle}>Table of Contents</Heading>
         </div>
-        <div className="row" style={{marginTop: '2rem'}}>
+        <div className={styles.chaptersGrid}>
           {chapters.map((chapter, idx) => (
-            <div key={idx} className="col col--12" style={{marginBottom: '1.5rem'}}>
-              <div className="card">
-                <div className="card__body">
-                  <Heading as="h3">{chapter.title}</Heading>
-                  <p>{chapter.description}</p>
-                  <Link to={chapter.link}>Read Chapter →</Link>
+            <Link
+              key={idx}
+              to={chapter.link}
+              className={styles.chapterCard}
+              style={{
+                animationDelay: `${idx * 0.15}s`
+              }}
+            >
+              <div className={styles.chapterContent}>
+                <div className={styles.chapterHeader}>
+                  <Heading as="h3" className={styles.chapterTitle}>{chapter.title}</Heading>
+                </div>
+                <p className={styles.chapterDescription}>{chapter.description}</p>
+                <div className={styles.chapterFooter}>
+                  <span className={styles.readLink}>Read Chapter →</span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

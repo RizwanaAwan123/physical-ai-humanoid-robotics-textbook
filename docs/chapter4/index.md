@@ -9,9 +9,9 @@ For a humanoid robot to interact intelligently and safely with its environment, 
 
 **Sections in this chapter:**
 
-*   [4.1 Proprioception: Joint Encoders, IMUs, Force/Torque Sensors](sections/4.1-proprioception.md)
-*   [4.2 Exteroception: Lidar, Stereo Vision, RGB-D Cameras](sections/4.2-exteroception.md)
-*   [4.3 Tactile Sensing: Pressure, Slip, and Proximity](sections/4.3-tactile-sensing.md)
-*   [4.4 Auditory Perception: Microphones and Sound Localization](sections/4.4-auditory-perception.md)
-*   [4.5 Sensor Fusion: Kalman Filters and Probabilistic Approaches](sections/4.5-sensor-fusion.md)
-*   [4.6 Computer Vision Fundamentals for Humanoids](sections/4.6-computer-vision-fundamentals.md)
+*   [4.1 Proprioception: Joint Encoders, IMUs, Force/Torque Sensors](./sections/4.1-proprioception.md)
+*   [4.2 Exteroception: Lidar, Stereo Vision, RGB-D Cameras](./sections/4.2-exteroception.md)
+*   [4.3 Tactile Sensing: Pressure, Slip, and Proximity](./sections/4.3-tactile-sensing.md)
+*   [4.4 Auditory Perception: Microphones and Sound Localization](./sections/4.4-auditory-perception.md)
+*   [4.5 Sensor Fusion: Kalman Filters and Probabilistic Approaches](./sections/4.5-sensor-fusion.md)
+*   [4.6 Computer Vision Fundamentals for Humanoids](./sections/4.6-computer-vision-fundamentals.md)

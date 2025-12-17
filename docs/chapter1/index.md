@@ -1,5 +1,5 @@
 ---
-id: chapter1-index
+id: chapter1
 title: Overview
 ---
 
@@ -11,8 +11,8 @@ We will also take a preliminary look at the essential components that make up a 
 
 **Sections in this chapter:**
 
-*   [1.1 Defining Physical AI: Embodiment and Intelligence](sections/1.1-defining-physical-ai.md)
-*   [1.2 Historical Evolution: From Industrial Robots to Humanoids](sections/1.2-historical-evolution.md)
-*   [1.3 The Humanoid Imperative: Advantages and Challenges](sections/1.3-humanoid-imperative.md)
-*   [1.4 Core Components of a Humanoid Robot: An Overview](sections/1.4-core-components.md)
-*   [1.5 Ethical, Societal, and Economic Implications](sections/1.5-ethical-implications.md)
+*   [1.1 Defining Physical AI: Embodiment and Intelligence](./sections/1.1-defining-physical-ai.md)
+*   [1.2 Historical Evolution: From Industrial Robots to Humanoids](./sections/1.2-historical-evolution.md)
+*   [1.3 The Humanoid Imperative: Advantages and Challenges](./sections/1.3-humanoid-imperative.md)
+*   [1.4 Core Components of a Humanoid Robot: An Overview](./sections/1.4-core-components.md)
+*   [1.5 Ethical, Societal, and Economic Implications](./sections/1.5-ethical-implications.md)

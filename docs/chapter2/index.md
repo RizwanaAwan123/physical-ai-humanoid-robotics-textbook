@@ -9,8 +9,8 @@ This chapter provides a concise yet comprehensive review of the fundamental math
 
 **Sections in this chapter:**
 
-*   [2.1 Linear Algebra: Vectors, Matrices, and Transformations](sections/2.1-linear-algebra.md)
-*   [2.2 Calculus: Differentiation, Integration, and Optimization](sections/2.2-calculus.md)
-*   [2.3 Quaternions and Rotation Representation](sections/2.3-quaternions.md)
-*   [2.4 Probability and Statistics: Uncertainty in Robotics](sections/2.4-probability-statistics.md)
-*   [2.5 Introduction to Control Theory Mathematics](sections/2.5-control-theory-math.md)
+*   [2.1 Linear Algebra: Vectors, Matrices, and Transformations](./sections/2.1-linear-algebra.md)
+*   [2.2 Calculus: Differentiation, Integration, and Optimization](./sections/2.2-calculus.md)
+*   [2.3 Quaternions and Rotation Representation](./sections/2.3-quaternions.md)
+*   [2.4 Probability and Statistics: Uncertainty in Robotics](./sections/2.4-probability-statistics.md)
+*   [2.5 Introduction to Control Theory Mathematics](./sections/2.5-control-theory-math.md)

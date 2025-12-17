@@ -7,8 +7,8 @@ title: Learning Objectives
 
 Upon completing this chapter, students will be able to:
 
-*   **Understand the fundamental concepts** of Physical AI and its distinction from traditional AI.
-*   **Trace the historical development** of robotics, leading to modern humanoids.
-*   **Identify the key motivations and challenges** in designing humanoid robots.
-*   **Recognize the primary hardware and software components** of humanoid systems.
-*   **Discuss the ethical and societal considerations** surrounding humanoid robotics.
+*   **Define Physical AI** and distinguish it from traditional disembodied AI systems.
+*   **Analyze the historical evolution** of robotics from industrial machines to humanoid systems.
+*   **Evaluate the advantages and challenges** of humanoid robot designs.
+*   **Identify the core components** of humanoid robots including sensors, actuators, and control systems.
+*   **Discuss the ethical, societal, and economic implications** of humanoid robotics integration.

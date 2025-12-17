@@ -1,0 +1,28 @@
+# Clarify
+
+
+parameters:
+  modules:
+    - Learning: ROS 2 coding, AI concepts
+    - Simulation: Gazebo/Unity simulations
+    - AI Training: NVIDIA Isaac perception & VLA models
+    - Capstone: Autonomous humanoid project
+  output_format:
+    - Table with columns: task_name, module, description, priority
+notes:
+  - Classify tasks based on learning, simulation, AI training, capstone
+  - Highlight cloud vs edge deployment tasks
+
+goal: "Ensure all course concepts and hardware/software requirements are clearly defined"
+  items_to_clarify:
+    - ROS 2 nodes, topics, services
+    - Gazebo/Unity simulations
+    - NVIDIA Isaac Sim & ROS integration
+    - VLA (Voice-Language-Action) modules
+    - Edge AI hardware: Jetson, RealSense, microphones
+    - Optional physical robots: Unitree Go2/G1
+  output_format:
+    - List of clarifications with simple explanations
+notes:
+  - Include dependencies between modules
+  - Include minimum vs ideal hardware specifications
