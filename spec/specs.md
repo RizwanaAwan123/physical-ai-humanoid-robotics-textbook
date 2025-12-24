@@ -1,186 +1,83 @@
-# SpecKit Specifications
+# My Book Project Specifications
 
-## Project: AI Book Generator and RAG Chatbot
+## Project Overview
 
-### Core Components
+This project is an AI-native textbook website focused on Physical AI and Humanoid Robotics. It features a modern Docusaurus UI with a RAG (Retrieval Augmented Generation) chatbot that allows users to ask questions about the textbook content.
 
-#### 1. Book Generation Service
-```
-Component: BookGenerator
-Purpose: Generate comprehensive AI book content
-Inputs: Topic, target audience, word count requirements
-Outputs: Structured book content with chapters and sections
-Dependencies: OpenAI API, Content templates
-```
+## Core Features
 
-**Specification:**
-- Generate books of 20,000-50,000 words
-- Create 8-15 chapters with hierarchical structure
-- Include consistent formatting and style
-- Support multiple topic domains
-- Validate content quality before completion
+### 1. Educational Content Platform
+- **Purpose**: Deliver comprehensive educational content about Physical AI and Humanoid Robotics
+- **Structure**: Organized into 6 main chapters with consistent formatting
+- **Format**: Clean, readable Docusaurus-based interface optimized for learning
 
-#### 2. Content Chunking System
-```
-Component: ContentChunker
-Purpose: Split book content into searchable chunks
-Inputs: Complete book content
-Outputs: Array of content chunks with metadata
-Dependencies: Text processing libraries
-```
+### 2. RAG Chatbot Integration
+- **Purpose**: Allow learners to ask questions about the textbook content and receive accurate answers
+- **Features**: Source citations, contextual understanding, and relevant information retrieval
+- **Technology**: Vector search using Qdrant with semantic similarity matching
 
-**Specification:**
-- Chunk size: 300-500 words per segment
-- Preserve semantic boundaries
-- Include chapter/section metadata
-- Maintain context coherence
-- Generate unique identifiers for each chunk
+### 3. Responsive Design
+- **Purpose**: Ensure content is accessible across all devices (desktop, tablet, mobile)
+- **Standards**: WCAG 2.1 AA compliance for accessibility
+- **Performance**: Fast loading times with Lighthouse scores >90
 
-#### 3. Qdrant Vector Storage
-```
-Component: QdrantManager
-Purpose: Store and retrieve vector embeddings of book content
-Inputs: Content chunks, query strings
-Outputs: Similarity search results
-Dependencies: Qdrant database, Embedding models
-```
+## Technical Architecture
 
-**Specification:**
-- Vector dimension: 1536 (compatible with text-embedding-ada-002)
-- Similarity metric: Cosine similarity
-- Support for metadata filtering
-- Batch ingestion capabilities
-- Efficient similarity search (top-k retrieval)
+### Frontend
+- **Framework**: Docusaurus 3.x with React 18+
+- **Deployment**: GitHub Pages for static hosting
+- **Features**: Clean, modern UI with navigation sidebar, responsive layout
 
-#### 4. RAG Query Processor
-```
-Component: QueryProcessor
-Purpose: Process user queries and retrieve relevant content
-Inputs: User query, conversation context
-Outputs: Retrieved context and generated response
-Dependencies: QdrantManager, LLM service
-```
+### Backend API
+- **Framework**: FastAPI (Python 3.11+)
+- **Purpose**: Handle RAG queries and chatbot interactions
+- **Deployment**: Railway or Render (free tier)
 
-**Specification:**
-- Query understanding and expansion
-- Multi-turn conversation support
-- Context window management (4096 tokens)
-- Response quality validation
-- Source attribution in responses
+### Data Storage
+- **Vector Database**: Qdrant (free tier) for embedding storage
+- **Metadata**: Neon PostgreSQL (free tier) for chunk metadata
+- **Content**: Markdown files for textbook content
 
-### API Endpoints
+## User Experience
 
-#### Book Generation
-```
-POST /api/book/generate
-Request: { topic: string, length: number, audience: string }
-Response: { bookId: string, status: "processing" | "completed", content: BookStructure }
-```
+### Primary User Stories
 
-#### Content Search
-```
-GET /api/search
-Request: { query: string, bookId: string, limit: number }
-Response: { results: Array<SearchResult>, queryTime: number }
-```
+1. **Reading Chapters** - Learners can navigate through well-structured chapters with consistent formatting
+2. **Asking Questions** - Learners can ask questions about content via the integrated chatbot
+3. **Responsive Access** - Content works seamlessly across different devices
+4. **Quick Navigation** - Easy navigation between chapters with instant load times
 
-#### Chat Interface
-```
-POST /api/chat
-Request: { message: string, bookId: string, sessionId: string }
-Response: { response: string, sources: Array<Source>, timestamp: Date }
-```
+## Development Constraints
 
-### Data Models
+### Technical Requirements
+- Use TypeScript for type safety
+- Implement rate limiting (10 requests/minute per IP)
+- Support free-tier deployment options only
+- Ensure performance targets (load times <2s)
 
-#### Book Structure
-```json
-{
-  "id": "string",
-  "title": "string",
-  "topic": "string",
-  "chapters": [
-    {
-      "id": "string",
-      "title": "string",
-      "sections": [
-        {
-          "id": "string",
-          "title": "string",
-          "content": "string",
-          "wordCount": "number"
-        }
-      ]
-    }
-  ],
-  "metadata": {
-    "wordCount": "number",
-    "generatedAt": "Date",
-    "audience": "string"
-  }
-}
-```
+### Content Requirements
+- Exactly 6 chapters of 10-25 pages each
+- Consistent structure (Learning Objectives, Core Concepts, Practical Applications, Summary)
+- Markdown-based content with proper formatting
 
-#### Content Chunk
-```json
-{
-  "id": "string",
-  "bookId": "string",
-  "chapterId": "string",
-  "sectionId": "string",
-  "content": "string",
-  "embedding": "Array<number>",
-  "metadata": {
-    "chapterTitle": "string",
-    "sectionTitle": "string",
-    "position": "number"
-  }
-}
-```
+## Success Metrics
 
-#### Search Result
-```json
-{
-  "chunkId": "string",
-  "content": "string",
-  "similarity": "number",
-  "metadata": {
-    "chapterTitle": "string",
-    "sectionTitle": "string"
-  }
-}
-```
+### Performance
+- Page load time <2 seconds
+- Chatbot response time <2 seconds
+- Lighthouse score >90 across all pages
 
-### Configuration Requirements
+### User Experience
+- Mobile-friendly and accessible
+- All 6 chapters complete and well-structured
+- RAG chatbot provides accurate answers with proper citations
 
-#### Environment Variables
-```
-OPENAI_API_KEY: API key for OpenAI services
-QDRANT_URL: URL for Qdrant vector database
-QDRANT_API_KEY: Authentication key for Qdrant
-EMBEDDING_MODEL: Name of the embedding model to use
-LLM_MODEL: Name of the language model for responses
-MAX_TOKENS: Maximum tokens for LLM responses
-QUERY_TIMEOUT: Timeout for search operations
-```
+## Deployment
 
-#### Performance Targets
-- Query response time: < 3 seconds
-- Content ingestion rate: 1000 chunks/minute
-- Accuracy threshold: > 0.7 similarity for valid results
-- Uptime: 99.5%
-- Concurrent users: Support 100+ simultaneous sessions
+### Frontend Deployment
+- GitHub Pages with single command deployment
+- Optimized build process (<3 minutes)
 
-### Quality Assurance
-
-#### Content Quality
-- Generated content must pass coherence checks
-- Responses must cite specific book sections
-- Factual accuracy validation against source material
-- Style consistency across all generated content
-
-#### System Quality
-- 99.5% API endpoint availability
-- < 100ms response time for cached queries
-- Proper error handling and graceful degradation
-- Comprehensive logging for debugging
+### Backend Deployment
+- Free-tier hosting on Railway or Render
+- Health checks and monitoring implemented
