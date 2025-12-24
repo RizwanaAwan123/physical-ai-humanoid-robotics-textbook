@@ -19,13 +19,13 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className={clsx('button button--secondary button--lg', styles.primaryButton)}
-            to="docs/preface">
+            to="docs/">
             Start Reading
           </Link>
           <Link
             className={clsx('button button--outline button--secondary button--lg', styles.secondaryButton)}
-            to="docs/preface">
-            View Preface
+            to="docs/quarter-overview">
+            View Overview
           </Link>
         </div>
       </div>
@@ -42,10 +42,9 @@ function BookOverview() {
             <div className="text--center padding-horiz--md">
               <Heading as="h2">About This Book</Heading>
               <p className="text--left" style={{maxWidth: '800px', margin: '0 auto', fontSize: '1.1rem'}}>
-                This comprehensive guide explores the fascinating intersection of artificial intelligence
-                and physical robotics, focusing on the design, development, and deployment of humanoid robots.
-                From fundamental mathematics to advanced control systems, this book provides a complete
-                foundation for understanding Physical AI and humanoid robotics.
+                This comprehensive curriculum explores Physical AI - AI that lives in the real world and understands physical laws.
+                Students will design, simulate, and deploy humanoid robots using ROS 2, Gazebo, Unity, and NVIDIA Isaac.
+                This module-based approach provides hands-on experience with the complete Physical AI ecosystem.
               </p>
             </div>
           </div>
@@ -53,20 +52,20 @@ function BookOverview() {
         <div className="row" style={{marginTop: '3rem'}}>
           <div className="col col--4">
             <div className="text--center padding-horiz--md">
-              <Heading as="h3">5 Chapters</Heading>
-              <p>Comprehensive coverage from introduction to advanced topics in humanoid robotics</p>
+              <Heading as="h3">4 Core Modules</Heading>
+              <p>Complete curriculum from ROS 2 fundamentals to Vision-Language-Action systems</p>
             </div>
           </div>
           <div className="col col--4">
             <div className="text--center padding-horiz--md">
-              <Heading as="h3">Multiple Sections</Heading>
-              <p>Detailed sections covering mathematics, kinematics, perception, and mechanical design</p>
+              <Heading as="h3">Capstone Project</Heading>
+              <p>Autonomous humanoid robot integrating all modules and technologies</p>
             </div>
           </div>
           <div className="col col--4">
             <div className="text--center padding-horiz--md">
-              <Heading as="h3">Practical Focus</Heading>
-              <p>Real-world applications and implementations of Physical AI concepts</p>
+              <Heading as="h3">Industry-Focused</Heading>
+              <p>Real-world applications using NVIDIA Isaac, ROS 2, and modern robotics technologies</p>
             </div>
           </div>
         </div>
@@ -75,32 +74,32 @@ function BookOverview() {
   );
 }
 
-function ChaptersList() {
-  const chapters = [
+function ModulesList() {
+  const modules = [
     {
-      title: 'Chapter 1: Introduction to Physical AI',
-      description: 'Defining Physical AI, historical evolution, and the humanoid imperative',
-      link: 'docs/chapter1',
+      title: 'Module 1: The Robotic Nervous System (ROS 2)',
+      description: 'Why ROS 2 is the nervous system of a robot - Nodes, Topics, Services, Actions, Python control using rclpy, connecting AI agents to ROS controllers, URDF for humanoid robots',
+      link: 'docs/module1/introduction',
     },
     {
-      title: 'Chapter 2: Essential Mathematics',
-      description: 'Linear algebra, calculus, quaternions, and control theory fundamentals',
-      link: 'docs/chapter2-index',
+      title: 'Module 2: The Digital Twin (Gazebo & Unity)',
+      description: 'Physics-based simulation, Gazebo environments, gravity, collisions, joints, sensor simulation, Unity for visualization and human-robot interaction',
+      link: 'docs/module2/introduction',
     },
     {
-      title: 'Chapter 3: Kinematics and Dynamics',
-      description: 'Forward and inverse kinematics, robot dynamics, balance, and stability',
-      link: 'docs/chapter3',
+      title: 'Module 3: The AI-Robot Brain (NVIDIA Isaac)',
+      description: 'Isaac Sim and synthetic data, Isaac ROS pipelines, Visual SLAM (VSLAM), Nav2 for humanoid navigation, training and sim-to-real concepts',
+      link: 'docs/module3/introduction',
     },
     {
-      title: 'Chapter 4: Sensing and Perception',
-      description: 'Proprioception, exteroception, sensor fusion, and computer vision',
-      link: 'docs/chapter4-index',
+      title: 'Module 4: Vision-Language-Action (VLA)',
+      description: 'Voice-to-action robotics, Whisper for speech recognition, LLM-based planning (natural language → ROS actions), vision + manipulation loop, cognitive robotics concepts',
+      link: 'docs/module4/introduction',
     },
     {
-      title: 'Chapter 5: Actuation and Mechanical Design',
-      description: 'Electric motors, actuators, mechanical structures, and power systems',
-      link: 'docs/chapter5',
+      title: 'Capstone Project: The Autonomous Humanoid',
+      description: 'Integrating all modules: voice commands, task planning using LLMs, navigation with ROS 2 + Nav2, object detection with vision, manipulation in simulation',
+      link: 'docs/capstone-project',
     },
   ];
 
@@ -108,13 +107,13 @@ function ChaptersList() {
     <section className={styles.chaptersSection}>
       <div className="container">
         <div className="text--center">
-          <Heading as="h2" className={styles.sectionTitle}>Table of Contents</Heading>
+          <Heading as="h2" className={styles.sectionTitle}>Module Curriculum</Heading>
         </div>
         <div className={styles.chaptersGrid}>
-          {chapters.map((chapter, idx) => (
+          {modules.map((module, idx) => (
             <Link
               key={idx}
-              to={chapter.link}
+              to={module.link}
               className={styles.chapterCard}
               style={{
                 animationDelay: `${idx * 0.15}s`
@@ -122,11 +121,11 @@ function ChaptersList() {
             >
               <div className={styles.chapterContent}>
                 <div className={styles.chapterHeader}>
-                  <Heading as="h3" className={styles.chapterTitle}>{chapter.title}</Heading>
+                  <Heading as="h3" className={styles.chapterTitle}>{module.title}</Heading>
                 </div>
-                <p className={styles.chapterDescription}>{chapter.description}</p>
+                <p className={styles.chapterDescription}>{module.description}</p>
                 <div className={styles.chapterFooter}>
-                  <span className={styles.readLink}>Read Chapter →</span>
+                  <span className={styles.readLink}>Explore Module →</span>
                 </div>
               </div>
             </Link>
@@ -142,11 +141,11 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="A Comprehensive Guide to Physical AI and Humanoid Robotics - covering mathematics, kinematics, dynamics, perception, and mechanical design">
+      description="A Comprehensive Guide to Physical AI and Humanoid Robotics - covering ROS 2, NVIDIA Isaac, Gazebo simulation, and Vision-Language-Action systems">
       <HomepageHeader />
       <main>
         <BookOverview />
-        <ChaptersList />
+        <ModulesList />
       </main>
     </Layout>
   );

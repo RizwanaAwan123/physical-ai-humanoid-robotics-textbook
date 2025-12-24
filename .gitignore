@@ -77,6 +77,7 @@ temp/
 
 # Backend specific files
 /backend/.claude/
+/backend/test_env.py
 
 # Additional sensitive files
 /config/
@@ -84,6 +85,21 @@ temp/
 /credentials/
 /keys/
 /certs/
+
+# Temporary files
+sidebars.js
+sidebars.ts.corrected
+sidebars.ts.new
+
+# Backup files
+*backup*
+*~
+*.bak
+*.old
+*.orig
+README.md.backup*
+README.md~
+README.md.bak
 
 # Python
 __pycache__/

@@ -119,37 +119,37 @@ const config: Config = {
           title: 'Book',
           items: [
             {
-              label: 'Start Reading',
-              to: 'docs/preface',
+              label: 'Table of Contents',
+              to: 'docs/',
             },
             {
-              label: 'Preface',
-              to: 'docs/preface',
+              label: 'Quarter Overview',
+              to: 'docs/quarter-overview',
             },
           ],
         },
         {
-          title: 'Chapters',
+          title: 'Modules',
           items: [
             {
-              label: 'Introduction',
-              to: 'docs/chapter1',
+              label: 'Module 1: The Robotic Nervous System',
+              to: 'docs/module1/introduction',
             },
             {
-              label: 'Mathematics',
-              to: 'docs/chapter2-index',
+              label: 'Module 2: The Digital Twin',
+              to: 'docs/module2/introduction',
             },
             {
-              label: 'Kinematics & Dynamics',
-              to: 'docs/chapter3',
+              label: 'Module 3: The AI-Robot Brain',
+              to: 'docs/module3/introduction',
             },
             {
-              label: 'Sensing & Perception',
-              to: 'docs/chapter4-index',
+              label: 'Module 4: Vision-Language-Action',
+              to: 'docs/module4/introduction',
             },
             {
-              label: 'Actuation & Design',
-              to: 'docs/chapter5',
+              label: 'Capstone Project',
+              to: 'docs/capstone-project',
             },
           ],
         },
