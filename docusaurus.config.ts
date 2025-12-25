@@ -34,9 +34,7 @@ const config: Config = {
   scripts: [],
   clientModules: [],
 
-  plugins: [
-    './src/plugins/docusaurus-api-proxy-plugin',
-  ],
+  plugins: [],
 
   themes: [],
 

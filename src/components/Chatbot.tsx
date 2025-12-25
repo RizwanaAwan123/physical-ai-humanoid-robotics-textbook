@@ -46,6 +46,8 @@ const Chatbot: React.FC = () => {
 
     try {
       // Call the backend API
+      // In production, this will be proxied to the deployed backend
+      // In development, this will be proxied to localhost:8000
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {

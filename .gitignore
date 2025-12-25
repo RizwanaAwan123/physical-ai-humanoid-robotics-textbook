@@ -109,3 +109,6 @@ __pycache__/
 .Python
 env/
 venv/
+
+# Redundant plugin - using setupProxy.js instead
+docusaurus-plugin-api-proxy/
