@@ -25,10 +25,14 @@
 
 # Sensitive files
 *.env
-*.env.*
 .env*
 backend/.env
 backend/*.env
+
+# Allow example files
+!.env.example
+!*.env.example
+!backend/.env.example
 
 # Logs
 *.log
