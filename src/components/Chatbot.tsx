@@ -60,16 +60,12 @@ const Chatbot: React.FC = () => {
       });
 
       // Check if the backend service is available
-      if (response.status === 404 || response.status === 500 || response.status === 0) {
-        // If backend is not available, show a helpful message
-        const errorMessage: Message = {
-          id: (Date.now() + 1).toString(),
-          content: 'Chatbot service is not available yet. Please deploy the backend service to enable chat functionality.',
-          role: 'assistant',
-          timestamp: new Date(),
-        };
-        setMessages(prev => [...prev, errorMessage]);
-        return;
+      if (response.status === 404 || response.status === 500) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      // Handle network errors (status 0) by attempting to continue
+      if (response.status === 0) {
+        console.warn('Network error, attempting to continue with error response');
       }
 
       if (!response.ok) {
