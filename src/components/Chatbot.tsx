@@ -59,6 +59,11 @@ const Chatbot: React.FC = () => {
         }),
       });
 
+      // Check if the backend service is available
+      if (response.status === 404 || response.status === 500 || response.status === 0) {
+        throw new Error('Backend service not available. Please ensure the backend is deployed.');
+      }
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
