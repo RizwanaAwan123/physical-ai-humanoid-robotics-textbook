@@ -8,11 +8,5 @@
         "distDir": "build"
       }
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "YOUR_BACKEND_URL/api/$1"
-    }
   ]
 }

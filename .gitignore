@@ -23,6 +23,13 @@
 .backend/.env
 .backend/.env.local
 
+# Sensitive files
+*.env
+*.env.*
+.env*
+backend/.env
+backend/*.env
+
 # Logs
 *.log
 npm-debug.log*
