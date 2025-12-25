@@ -8,5 +8,11 @@
         "distDir": "build"
       }
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://your-backend-deployment-url.onrender.com/api/$1"
+    }
   ]
 }
