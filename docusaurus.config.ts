@@ -20,7 +20,7 @@ const config: Config = {
   url: 'https://rizwanaawan123.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/physical-ai-humanoid-robotics-textbook/',
+  baseUrl: process.env.NODE_ENV === 'production' ? '/physical-ai-humanoid-robotics-textbook/' : '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
