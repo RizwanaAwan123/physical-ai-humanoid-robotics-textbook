@@ -126,6 +126,8 @@ docusaurus-plugin-api-proxy/
 
 # Additional cleanup
 .claude/
+BACKEND_SETUP.md
+DEPLOYMENT.md
 HISTORY.md
 SPEC.md
 src/plugins/docusaurus-proxy-plugin/
