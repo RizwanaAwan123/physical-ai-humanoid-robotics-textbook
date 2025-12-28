@@ -1,9 +1,42 @@
 // Vercel Serverless Function for Chat API with RAG functionality
-const { QdrantClient } = require('@qdrant/js-client-rest');
+// Dynamically import QdrantClient to handle cases where it's not available
+let QdrantClient;
+
+try {
+  ({ QdrantClient } = require('@qdrant/js-client-rest'));
+} catch (error) {
+  console.log('Qdrant client not available, using mock responses');
+}
 
 // Simple embedding function using TF-IDF-like approach
 function getSimpleEmbedding(text) {
-  const crypto = require('crypto');
+  const crypto = typeof require !== 'undefined' ? require('crypto') : undefined;
+  if (!crypto && typeof window !== 'undefined') {
+    // Browser environment - use Web Crypto API
+    crypto = {
+      createHash: function(str) {
+        // Simple fallback for browser environment
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+          const char = str.charCodeAt(i);
+          hash = ((hash << 5) - hash) + char;
+          hash = hash & hash; // Convert to 32-bit integer
+        }
+        return {
+          update: function() { return this; },
+          digest: function() {
+            const result = new Uint8Array(16);
+            const hashStr = Math.abs(hash).toString();
+            for (let i = 0; i < Math.min(hashStr.length, 16); i++) {
+              result[i] = parseInt(hashStr[i], 10);
+            }
+            return result;
+          }
+        };
+      }
+    };
+  }
+
   const textLower = text.toLowerCase();
   const embedding = new Array(1536).fill(0.0);
 
@@ -58,68 +91,69 @@ async function searchDocuments(query, limit = 5) {
     // Get embedding for the query
     const queryEmbedding = getSimpleEmbedding(query);
 
-    // In a real implementation, you would connect to Qdrant here
-    // For Vercel deployment, we'll return mock responses based on environment
-    const qdrantUrl = process.env.QDRANT_URL;
-    const qdrantApiKey = process.env.QDRANT_API_KEY;
+    // Check if QdrantClient is available
+    if (QdrantClient) {
+      const qdrantUrl = process.env.QDRANT_URL;
+      const qdrantApiKey = process.env.QDRANT_API_KEY;
 
-    if (qdrantUrl && qdrantApiKey) {
-      // Use actual Qdrant client
-      const client = new QdrantClient({
-        url: qdrantUrl,
-        apiKey: qdrantApiKey,
-      });
+      if (qdrantUrl && qdrantApiKey) {
+        // Use actual Qdrant client
+        const client = new QdrantClient({
+          url: qdrantUrl,
+          apiKey: qdrantApiKey,
+        });
 
-      const results = await client.search("physical_ai_textbook", {
-        vector: queryEmbedding,
-        limit: limit,
-        with_payload: true,
-      });
+        const results = await client.search("physical_ai_textbook", {
+          vector: queryEmbedding,
+          limit: limit,
+          with_payload: true,
+        });
 
-      return results.map(hit => ({
-        content: hit.payload.content || '',
-        metadata: { ...hit.payload, id: hit.id },
-        score: hit.score
-      }));
-    } else {
-      // Fallback mock responses
-      const mockResponses = [
-        {
-          content: "Physical AI integrates artificial intelligence with physical systems, enabling robots to perceive, reason, and act in the real world. This comprehensive curriculum explores how AI can live in the real world and understand physical laws. Students will design, simulate, and deploy humanoid robots using ROS 2, Gazebo, Unity, and NVIDIA Isaac.",
-          metadata: { filename: 'textbook-intro.md', filepath: 'docs/intro.md' },
-          score: 0.95
-        },
-        {
-          content: "The Robotic Nervous System refers to the core architecture of a robot that handles communication, control, and coordination. In the context of ROS 2 (Robot Operating System 2), it includes Nodes, Topics, Services, Actions, and the underlying communication infrastructure that allows different parts of a robot to work together.",
-          metadata: { filename: 'robotic-nervous-system.md', filepath: 'docs/module1/robotic-nervous-system.md' },
-          score: 0.90
-        },
-        {
-          content: "Humanoid robotics focuses on creating robots with human-like form and capabilities, including bipedal locomotion, dexterous manipulation, and human-like interaction abilities. These robots are designed to operate in human environments and interact with humans effectively.",
-          metadata: { filename: 'humanoid-robotics.md', filepath: 'docs/module1/humanoid-robotics.md' },
-          score: 0.85
-        },
-        {
-          content: "ROS 2 (Robot Operating System 2) is a flexible framework for writing robot software. It provides services designed for a heterogeneous computer cluster such as hardware abstraction, device drivers, libraries, visualizers, message-passing, package management, and more.",
-          metadata: { filename: 'ros2-fundamentals.md', filepath: 'docs/module1/ros2-fundamentals.md' },
-          score: 0.80
-        },
-        {
-          content: "Qdrant is a vector similarity search engine that enables efficient similarity search for high-dimensional vectors. It's commonly used for semantic search, recommendation systems, and RAG (Retrieval Augmented Generation) applications.",
-          metadata: { filename: 'qdrant-integration.md', filepath: 'docs/rag/qdrant-integration.md' },
-          score: 0.75
-        }
-      ];
-
-      // Simple keyword matching to filter relevant results
-      const queryLower = query.toLowerCase();
-      const filtered = mockResponses.filter(item =>
-        item.content.toLowerCase().includes(queryLower) ||
-        queryLower.split(' ').some(word => item.content.toLowerCase().includes(word))
-      );
-
-      return filtered.length > 0 ? filtered.slice(0, limit) : mockResponses.slice(0, limit);
+        return results.map(hit => ({
+          content: hit.payload.content || '',
+          metadata: { ...hit.payload, id: hit.id },
+          score: hit.score
+        }));
+      }
     }
+
+    // Fallback mock responses
+    const mockResponses = [
+      {
+        content: "Physical AI integrates artificial intelligence with physical systems, enabling robots to perceive, reason, and act in the real world. This comprehensive curriculum explores how AI can live in the real world and understand physical laws. Students will design, simulate, and deploy humanoid robots using ROS 2, Gazebo, Unity, and NVIDIA Isaac.",
+        metadata: { filename: 'textbook-intro.md', filepath: 'docs/intro.md' },
+        score: 0.95
+      },
+      {
+        content: "The Robotic Nervous System refers to the core architecture of a robot that handles communication, control, and coordination. In the context of ROS 2 (Robot Operating System 2), it includes Nodes, Topics, Services, Actions, and the underlying communication infrastructure that allows different parts of a robot to work together.",
+        metadata: { filename: 'robotic-nervous-system.md', filepath: 'docs/module1/robotic-nervous-system.md' },
+        score: 0.90
+      },
+      {
+        content: "Humanoid robotics focuses on creating robots with human-like form and capabilities, including bipedal locomotion, dexterous manipulation, and human-like interaction abilities. These robots are designed to operate in human environments and interact with humans effectively.",
+        metadata: { filename: 'humanoid-robotics.md', filepath: 'docs/module1/humanoid-robotics.md' },
+        score: 0.85
+      },
+      {
+        content: "ROS 2 (Robot Operating System 2) is a flexible framework for writing robot software. It provides services designed for a heterogeneous computer cluster such as hardware abstraction, device drivers, libraries, visualizers, message-passing, package management, and more.",
+        metadata: { filename: 'ros2-fundamentals.md', filepath: 'docs/module1/ros2-fundamentals.md' },
+        score: 0.80
+      },
+      {
+        content: "Qdrant is a vector similarity search engine that enables efficient similarity search for high-dimensional vectors. It's commonly used for semantic search, recommendation systems, and RAG (Retrieval Augmented Generation) applications.",
+        metadata: { filename: 'qdrant-integration.md', filepath: 'docs/rag/qdrant-integration.md' },
+        score: 0.75
+      }
+    ];
+
+    // Simple keyword matching to filter relevant results
+    const queryLower = query.toLowerCase();
+    const filtered = mockResponses.filter(item =>
+      item.content.toLowerCase().includes(queryLower) ||
+      queryLower.split(' ').some(word => item.content.toLowerCase().includes(word))
+    );
+
+    return filtered.length > 0 ? filtered.slice(0, limit) : mockResponses.slice(0, limit);
   } catch (error) {
     console.error('Error searching documents:', error);
     // Fallback to mock responses

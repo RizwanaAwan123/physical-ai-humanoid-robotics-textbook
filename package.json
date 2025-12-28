@@ -17,6 +17,7 @@
   "dependencies": {
     "@docusaurus/preset-classic": "3.9.2",
     "@mdx-js/react": "^3.0.0",
+    "@qdrant/js-client-rest": "^1.12.0",
     "clsx": "^2.0.0",
     "http-proxy-middleware": "^3.0.3",
     "prism-react-renderer": "^2.3.0",
