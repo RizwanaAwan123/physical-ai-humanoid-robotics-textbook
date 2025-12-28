@@ -10,12 +10,19 @@
     },
     {
       "src": "api/chat.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["backend/**"]
+      }
     }
   ],
   "routes": [
     {
       "src": "/api/chat",
+      "dest": "api/chat.js"
+    },
+    {
+      "src": "/api/(.*)",
       "dest": "api/chat.js"
     }
   ]
