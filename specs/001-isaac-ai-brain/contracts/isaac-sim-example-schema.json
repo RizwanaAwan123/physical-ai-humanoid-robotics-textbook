@@ -1,0 +1,194 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Isaac Sim Example Schema",
+  "description": "JSON schema for Isaac Sim Python script examples in Module 3 Chapter 1",
+  "type": "object",
+  "required": ["id", "title", "type", "difficulty", "files", "readme", "testing_criteria", "hardware_requirements", "estimated_time"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9]{2}-.+$",
+      "description": "Example ID (e.g., '01-hello-isaac-sim')"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Descriptive title for the example"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["isaac_sim"],
+      "description": "Example type"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced"],
+      "description": "Difficulty level"
+    },
+    "files": {
+      "type": "object",
+      "required": ["python"],
+      "properties": {
+        "python": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["path", "description"],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "\\.py$"
+              },
+              "description": {
+                "type": "string"
+              },
+              "min_lines": {
+                "type": "integer",
+                "minimum": 20
+              }
+            }
+          }
+        },
+        "usd": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "description"],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "\\.usd$"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "launch": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "description"],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "\\.(sh|bash)$"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "readme": {
+      "type": "object",
+      "required": ["prerequisites", "installation_steps", "execution_steps", "expected_output", "troubleshooting"],
+      "properties": {
+        "prerequisites": {
+          "type": "object",
+          "required": ["software", "hardware"],
+          "properties": {
+            "software": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"type": "string"}
+            },
+            "hardware": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"type": "string"}
+            }
+          }
+        },
+        "installation_steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string"}
+        },
+        "execution_steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string"}
+        },
+        "expected_output": {
+          "type": "object",
+          "required": ["description", "success_criteria"],
+          "properties": {
+            "description": {"type": "string"},
+            "success_criteria": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"type": "string"}
+            }
+          }
+        },
+        "troubleshooting": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["symptom", "cause", "solution"],
+            "properties": {
+              "symptom": {"type": "string"},
+              "cause": {"type": "string"},
+              "solution": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "testing_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["criterion", "validation_method"],
+        "properties": {
+          "criterion": {"type": "string"},
+          "validation_method": {"type": "string"}
+        }
+      }
+    },
+    "hardware_requirements": {
+      "type": "object",
+      "required": ["min_gpu", "min_ram", "min_cpu_cores"],
+      "properties": {
+        "min_gpu": {
+          "type": "string",
+          "description": "Minimum GPU requirement (e.g., 'RTX 2060 (6GB VRAM)')"
+        },
+        "min_ram": {
+          "type": "string",
+          "pattern": "^[0-9]+GB$"
+        },
+        "min_cpu_cores": {
+          "type": "integer",
+          "minimum": 4
+        }
+      }
+    },
+    "estimated_time": {
+      "type": "string",
+      "description": "Estimated completion time (e.g., '15-30 minutes')"
+    },
+    "performance_targets": {
+      "type": "object",
+      "properties": {
+        "rtf": {
+          "type": "number",
+          "minimum": 1.0,
+          "description": "Real-Time Factor (≥1.0 for real-time simulation)"
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 30,
+          "description": "Frames per second"
+        }
+      }
+    }
+  }
+}

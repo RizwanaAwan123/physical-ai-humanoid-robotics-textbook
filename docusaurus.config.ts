@@ -34,12 +34,11 @@ const config: Config = {
   scripts: [],
   clientModules: [],
 
-  plugins: [],
+  plugins: [
+    './src/plugins/docusaurus-proxy-plugin',
+  ],
 
   themes: [],
-
-  // Note: Docusaurus doesn't support devServer proxy configuration directly
-  // API proxying is handled via src/setupProxy.js
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you

@@ -220,7 +220,7 @@ async def get_embedding(text: str) -> List[float]:
     return get_simple_embedding(text)
 
 async def search_documents(query: str, limit: int = 5) -> List[Dict[str, Any]]:
-    """Search documents using Qdrant vector database"""
+    """Search documents using Qdrant vector database with cosine similarity"""
     if not QDRANT_CLIENT:
         logger.warning("Qdrant client not initialized, falling back to mock search")
         # Fallback mock responses
@@ -249,14 +249,15 @@ async def search_documents(query: str, limit: int = 5) -> List[Dict[str, Any]]:
         # Get embedding for the query using the new function
         query_embedding = await get_embedding(query)
 
-        # Search in Qdrant
+        # Search in Qdrant with top-K retrieval (5) and cosine similarity
         search_result = QDRANT_CLIENT.search(
             collection_name=COLLECTION_NAME,
             query_vector=query_embedding,
-            limit=limit,
+            limit=limit,  # Top-K retrieval: 5
             with_payload=True,
             with_vectors=False,
-            score_threshold=0.1  # Only return results with minimum relevance
+            score_threshold=0.1,  # Only return results with minimum relevance
+            # Cosine similarity is already configured in the collection
         )
 
         # Format results
@@ -291,10 +292,10 @@ async def search_documents(query: str, limit: int = 5) -> List[Dict[str, Any]]:
         return mock_responses[:limit]
 
 async def generate_response(query: str, context: str) -> str:
-    """Generate a response based on the query and context using simple text processing"""
+    """Generate a response based on the query and context using book-only responses"""
     import re
 
-    # If we have context, try to extract relevant information
+    # If we have context, extract relevant information from it
     if context.strip():
         # Clean up the context to extract the most relevant parts
         context_parts = context.split('\n\n')  # Split by paragraphs
@@ -324,22 +325,14 @@ async def generate_response(query: str, context: str) -> str:
                     relevant_sentences.append(sentence.strip())
 
             if relevant_sentences:
-                response = f"Based on the textbook: {'. '.join(relevant_sentences[:2])}"
+                response = f"{' '.join(relevant_sentences[:2])}"  # Short, direct answer from book
             else:
-                response = f"Based on the textbook: {top_context[:500]}..."  # Truncate if too long
+                response = f"{top_context[:500]}"  # Truncate if too long, direct from book
         else:
-            response = f"According to the textbook: {context[:300]}..."
+            response = f"{context[:300]}"  # Direct from book content
     else:
-        # Fallback if no context is provided
-        q = query.lower()
-        if "physical ai" in q or "physical" in q:
-            response = "Physical AI integrates artificial intelligence with physical systems, enabling robots to perceive, reason, and act in the real world. Unlike traditional AI that operates purely in digital domains, Physical AI is embodied and interacts directly with the physical environment."
-        elif "humanoid" in q:
-            response = "Humanoid robotics focuses on creating robots with human-like form and capabilities, including bipedal locomotion and dexterous manipulation. These robots are designed to operate in human environments and interact with humans effectively."
-        elif "kinematics" in q:
-            response = "Kinematics studies the motion of robotic systems without considering forces. Forward kinematics determines end-effector position from joint angles, while inverse kinematics solves for joint angles needed to achieve a desired end-effector position."
-        else:
-            response = f"I found some information in the textbook related to your query: '{query}'. Please check the chatbot interface for the specific context snippets."
+        # If no context is found in the book, respond with the specific message
+        response = "This information is not available in the book."
 
     return response
 
@@ -503,7 +496,7 @@ async def chat(request: ChatRequest):
         # Get context chunks
         context_chunks = await search_documents(request.message, request.max_context_chunks)
         if not context_chunks:
-            response_text = "Not found in textbook"
+            response_text = "This information is not available in the book."
             context_chunks = []
         else:
             context_text = "\n\n".join([c['content'] for c in context_chunks])

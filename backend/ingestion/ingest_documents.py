@@ -84,20 +84,31 @@ class DocumentIngestor:
 
         return markdown_files
 
-    def chunk_text(self, text: str, max_tokens: int = 1000) -> List[str]:
-        """Split text into chunks (approximate token count)"""
-        paragraphs = re.split(r'\n\s*\n', text)
+    def chunk_text(self, text: str, max_tokens: int = 700, overlap: int = 120) -> List[str]:
+        """Split text into chunks with overlap (approximate token count)"""
+        # Split text into sentences to maintain semantic boundaries
+        sentences = re.split(r'(?<=[.!?])\s+', text)
         chunks = []
         current_chunk = ""
 
-        for paragraph in paragraphs:
-            if len(current_chunk) + len(paragraph) <= max_tokens * 4:
-                current_chunk += "\n\n" + paragraph if current_chunk else paragraph
+        for sentence in sentences:
+            # Check if adding the sentence would exceed max_tokens
+            if len(current_chunk) + len(sentence) <= max_tokens * 4:
+                current_chunk += " " + sentence if current_chunk else sentence
             else:
+                # Add the current chunk to the list
                 if current_chunk.strip():
                     chunks.append(current_chunk.strip())
-                current_chunk = paragraph
 
+                # Create overlapping chunk if needed
+                if overlap > 0 and len(current_chunk) > overlap * 4:
+                    # Get the last 'overlap' characters as the beginning of next chunk
+                    overlap_text = current_chunk[-(overlap * 4):]
+                    current_chunk = overlap_text + " " + sentence
+                else:
+                    current_chunk = sentence
+
+        # Add the final chunk
         if current_chunk.strip():
             chunks.append(current_chunk.strip())
 
@@ -280,19 +291,29 @@ def load_documents_to_qdrant(qdrant_url: str, qdrant_api_key: str, collection_na
     for file_data in markdown_files:
         logger.info(f"Processing file: {file_data['metadata']['filepath']}")
 
-        # Split text into chunks
-        paragraphs = re.split(r'\n\s*\n', file_data["content"])
+        # Split text into chunks with overlap (700 tokens, 120 overlap)
+        sentences = re.split(r'(?<=[.!?])\s+', file_data["content"])
         chunks = []
         current_chunk = ""
 
-        for paragraph in paragraphs:
-            if len(current_chunk) + len(paragraph) <= 1000 * 4:  # approx 1000 tokens
-                current_chunk += "\n\n" + paragraph if current_chunk else paragraph
+        for sentence in sentences:
+            # Check if adding the sentence would exceed max_tokens
+            if len(current_chunk) + len(sentence) <= 700 * 4:  # 700 tokens
+                current_chunk += " " + sentence if current_chunk else sentence
             else:
+                # Add the current chunk to the list
                 if current_chunk.strip():
                     chunks.append(current_chunk.strip())
-                current_chunk = paragraph
 
+                # Create overlapping chunk if needed
+                if len(current_chunk) > 120 * 4:  # 120 overlap
+                    # Get the last 'overlap' characters as the beginning of next chunk
+                    overlap_text = current_chunk[-(120 * 4):]
+                    current_chunk = overlap_text + " " + sentence
+                else:
+                    current_chunk = sentence
+
+        # Add the final chunk
         if current_chunk.strip():
             chunks.append(current_chunk.strip())
 

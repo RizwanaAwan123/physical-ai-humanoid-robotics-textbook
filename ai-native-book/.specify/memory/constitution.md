@@ -1,126 +1,67 @@
-<!-- Sync Impact Report -->
-<!-- Version change: None (initial creation) -->
-<!-- Modified principles: All (initial creation) -->
-<!-- Added sections: "Book Structure & Content Requirements", "Editorial & Review Process" -->
-<!-- Removed sections: None -->
-<!-- Templates requiring updates:
-    ✅ .specify/templates/plan-template.md
-    ✅ .specify/templates/spec-template.md
-    ✅ .specify/templates/tasks-template.md
-    ✅ .specify/templates/commands/sp.constitution.md
--->
-<!-- Follow-up TODOs: None -->
 # Physical AI & Humanoid Robotics Book Constitution
 
 ## Core Principles
 
-### I. Comprehensive & Self-Contained Chapters
-Each chapter must be a complete, standalone unit, covering its topic thoroughly without requiring external references to understand core concepts. All necessary context, explanations, and examples are to be provided within the chapter.
+### I. Technical Excellence & Depth
+Content must maintain the highest standards of technical accuracy and depth. All concepts, algorithms, and implementations must be thoroughly researched and validated by domain experts. Code examples must be executable, well-tested, and follow industry best practices for robotics and AI development.
 
-### II. Clarity for AI Students
-Content must be written with a clear, concise, and accessible style, specifically tailored for AI students. Complex topics should be broken down into understandable segments, using straightforward language.
+### II. Modular Structure Integrity (NON-NEGOTIABLE)
+The book structure follows a fixed 4-module, 4-chapter architecture: Module 1 (ROS 2), Module 2 (Digital Twin), Module 3 (AI-Robot Brain), and Module 4 (Vision-Language-Action). Each module contains exactly 4 detailed chapters, with the capstone project integrating all modules. This structure is immutable without formal amendment process.
 
-### III. Rich Learning Media
-Chapters must integrate a variety of learning media, including well-documented code snippets, illustrative diagrams, and informative tables, to enhance comprehension and engagement.
+### III. AI-Native Development & Spec-Driven Approach
+All content creation must follow Spec-Kit Plus methodology: specification → clarification → plan → tasks → implementation → validation. This ensures systematic, predictable development aligned with hackathon requirements and professional engineering standards.
 
-### IV. Practical Application & Assessment
-Each chapter must include practical exercises or thought-provoking questions to reinforce learning, encourage critical thinking, and allow students to apply concepts.
+### IV. Professional UI/UX Standards
+The book interface must embody professional design standards with custom Docusaurus theming, responsive layout, accessible navigation, syntax highlighting, mathematical notation rendering, and intuitive user experience that matches premium educational platforms.
 
-### V. Structured & Detailed Outlines
-The book will feature a detailed Table of Contents and comprehensive chapter outlines, each with 5-7 subtopics, ensuring a logical flow and deep coverage of subjects.
+### V. Free-Tier Infrastructure Optimization
+The RAG system and backend infrastructure must operate effectively within free-tier limits: Qdrant Cloud free tier for vector storage, Neon Serverless Postgres for metadata, and efficient API usage patterns that minimize costs while maintaining functionality.
 
-## Book Structure & Content Requirements
+### VI. RAG System Content Fidelity
+The RAG chatbot must answer exclusively from book content. Responses must be grounded in retrieved context with clear source attribution. Any query outside the book's scope must be explicitly acknowledged with "This information is not available in the book."
 
-### Table of Contents
+## Content Standards
 
-*   Introduction to Physical AI & Humanoid Robotics
-*   ROS 2 & Robotic Nervous System
-*   Simulations: Gazebo & Unity Digital Twin
-*   NVIDIA Isaac AI-Robot Brain
-*   Vision-Language-Action & Conversational Robotics
-*   Capstone Project: Autonomous Humanoid
+All chapters must include six mandatory sections:
+1. **Learning Objectives**: 3-5 measurable outcomes with Bloom's taxonomy levels
+2. **Theoretical Foundations**: Mathematical formulations and conceptual explanations
+3. **Hands-On Implementation**: Executable code examples with detailed walkthroughs
+4. **Practical Examples**: Real-world scenarios demonstrating concepts
+5. **Exercises & Challenges**: Progressive difficulty (beginner, intermediate, advanced)
+6. **Further Reading**: Curated references to documentation, research papers, and tutorials
 
-### Chapter Outlines
+## Technical Architecture
 
-#### Chapter 1: Introduction to Physical AI & Humanoid Robotics
-1.  Defining Physical AI and Humanoid Robotics
-2.  Historical Overview and Key Milestones
-3.  Components of a Humanoid Robot: Hardware and Software
-4.  Ethical Considerations and Societal Impact
-5.  Applications and Future Trends
-6.  Core Concepts of Embodied AI
-7.  Challenges and Open Problems in Humanoid Robotics
-Exercises/Questions:
-*   Discuss the differences between traditional AI and Physical AI.
-*   Identify three ethical challenges in deploying humanoid robots.
+### Frontend Stack
+- Docusaurus 3.x with custom theme and MDX support
+- KaTeX for mathematical notation
+- Mermaid for diagram rendering
+- Prism.js for syntax highlighting
+- Responsive CSS with custom color palette
 
-#### Chapter 2: ROS 2 & Robotic Nervous System
-1.  Introduction to Robot Operating System (ROS 2)
-2.  ROS 2 Architecture: Nodes, Topics, Services, Actions
-3.  Setting up a ROS 2 Environment
-4.  Programming with ROS 2: Publishers and Subscribers
-5.  Using ROS 2 for Robot Control and Communication
-6.  Sensors and Actuators Integration with ROS 2
-7.  Debugging and Monitoring ROS 2 Systems
-Exercises/Questions:
-*   Create a ROS 2 node that publishes a "Hello World" message.
-*   Explain the role of `tf2` in ROS 2.
+### Backend Stack
+- FastAPI (Python 3.10+) for API services
+- Qdrant for vector embeddings and semantic search
+- Neon Postgres for conversation history and metadata
+- OpenAI APIs for embeddings and generation
+- Better-Auth for user authentication
 
-#### Chapter 3: Simulations: Gazebo & Unity Digital Twin
-1.  Importance of Simulation in Robotics Development
-2.  Introduction to Gazebo for Robotics Simulation
-3.  Building Robot Models (URDF/SDF) for Gazebo
-4.  Interfacing Gazebo with ROS 2
-5.  Introduction to Unity for Digital Twin Development
-6.  Creating a Digital Twin in Unity
-7.  Integrating AI with Unity Simulations
-Exercises/Questions:
-*   Describe the advantages of using a digital twin.
-*   Build a simple robot in Gazebo and make it move using ROS 2.
-
-#### Chapter 4: NVIDIA Isaac AI-Robot Brain
-1.  Overview of NVIDIA Isaac Platform
-2.  Isaac SDK and its Components
-3.  Developing AI Applications with Isaac ROS
-4.  Leveraging NVIDIA GPUs for Robotics AI
-5.  Isaac Sim for High-Fidelity Simulation
-6.  Perception and Navigation with Isaac
-7.  Human-Robot Interaction using Isaac
-Exercises/Questions:
-*   Explain how NVIDIA Isaac accelerates AI in robotics.
-*   Propose a scenario where Isaac Sim would be crucial for development.
-
-#### Chapter 5: Vision-Language-Action & Conversational Robotics
-1.  Fundamentals of Vision-Language Models (VLMs)
-2.  Integrating Computer Vision for Robot Perception
-3.  Natural Language Understanding for Human-Robot Interaction
-4.  Action Planning and Execution based on VLM Outputs
-5.  Developing Conversational Interfaces for Robots
-6.  Embodied AI and Grounding Language in Action
-7.  Case Studies in Vision-Language-Action Robotics
-Exercises/Questions:
-*   Design a conversational flow for a robot assisting in a kitchen.
-*   How can VLMs improve robot adaptability?
-
-#### Chapter 6: Capstone Project: Autonomous Humanoid
-1.  Project Introduction and Goal Definition
-2.  System Architecture Design for an Autonomous Humanoid
-3.  Integrating ROS 2, Simulation, and AI Components
-4.  Implementation of Perception and Navigation
-5.  Developing Human-Robot Interaction Modules
-6.  Testing, Evaluation, and Refinement
-7.  Future Work and Advanced Capabilities
-Exercises/Questions:
-*   Outline the main challenges in building a fully autonomous humanoid.
-*   Suggest a novel application for your capstone humanoid project.
-
-## Editorial & Review Process
-
-*   **Style Guide Adherence:** All content must strictly follow the defined style: concise, clear for AI students, and include code snippets, illustrative diagrams, and tables.
-*   **Quality Assurance:** Chapters will undergo review to ensure accuracy, pedagogical effectiveness, and adherence to the "Self-Contained" principle.
+### Development Workflow
+- Git-based version control with feature branches
+- Spec-Driven Development (SDD) methodology
+- Continuous integration with automated testing
+- Quality gates with linting and validation
+- Semantic versioning (MAJOR.MINOR.PATCH)
 
 ## Governance
 
-Constitution supersedes all other content guidelines for the book. Amendments require documentation and approval. All chapters must comply with the principles outlined here.
+### Amendment Process
+Changes to this constitution require formal ADR (Architectural Decision Record) with justification, alternatives analysis, and stakeholder approval.
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-05 | **Last Amended**: 2025-12-05
+### Versioning Policy
+Semantic versioning with backward compatibility maintained within minor versions.
+
+### Compliance
+All development activities must demonstrate compliance with stated principles through PHRs (Prompt History Records) and quality gates.
+
+**Version**: 1.0.0 | **Ratified**: 2025-12-06 | **Last Amended**: 2025-12-06
