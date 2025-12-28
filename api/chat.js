@@ -1,5 +1,4 @@
 // Vercel Serverless Function for Chat API with RAG functionality
-const { QdrantClient } = require('@qdrant/js-client-rest');
 
 // Simple embedding function using TF-IDF-like approach
 function getSimpleEmbedding(text) {
@@ -85,6 +84,9 @@ async function searchDocuments(query, limit = 5) {
 
       return filtered.length > 0 ? filtered.slice(0, limit) : mockResponses.slice(0, limit);
     }
+
+    // Dynamically import QdrantClient to handle cases where it's not available
+    const { QdrantClient } = await import('@qdrant/js-client-rest');
 
     // Use actual Qdrant client if credentials are provided
     const client = new QdrantClient({
