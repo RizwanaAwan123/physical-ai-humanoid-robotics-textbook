@@ -1,4 +1,5 @@
 // Vercel Serverless Function for Chat API with RAG functionality
+// This version is compatible with Vercel and maintains Qdrant integration
 
 // Simple embedding function using TF-IDF-like approach
 function getSimpleEmbedding(text) {
@@ -85,22 +86,8 @@ async function searchDocuments(query, limit = 5) {
       return filtered.length > 0 ? filtered.slice(0, limit) : mockResponses.slice(0, limit);
     }
 
-    // Try to dynamically import QdrantClient
-    let QdrantClient;
-    try {
-      ({ QdrantClient } = await import('@qdrant/js-client-rest'));
-    } catch (error) {
-      console.error('Qdrant client not available:', error);
-      // If Qdrant is not available, return mock responses
-      const mockResponses = [
-        {
-          content: "Physical AI integrates artificial intelligence with physical systems, enabling robots to perceive, reason, and act in the real world.",
-          metadata: { filename: 'physical_ai_intro.md', filepath: 'docs/chapter1/physical_ai_intro.md' },
-          score: 0.95
-        }
-      ];
-      return mockResponses.slice(0, limit);
-    }
+    // Dynamically import QdrantClient to handle Vercel environment
+    const { QdrantClient } = await import('@qdrant/js-client-rest');
 
     // Use actual Qdrant client if credentials are provided
     const client = new QdrantClient({
