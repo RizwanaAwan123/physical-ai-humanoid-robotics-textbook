@@ -123,3 +123,9 @@ venv/
 
 # Redundant plugin - using setupProxy.js instead
 docusaurus-plugin-api-proxy/
+
+# Additional cleanup
+.claude/
+HISTORY.md
+SPEC.md
+src/plugins/docusaurus-proxy-plugin/
