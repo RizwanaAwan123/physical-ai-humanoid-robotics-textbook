@@ -28,3 +28,88 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* =====================
+   MOBILE FIX (DO NOT REMOVE)
+   ===================== */
+
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container,
+  .row,
+  .col {
+    max-width: 100% !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  /* Mobile-specific chat page layout */
+  .container.margin-vert--lg {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .row {
+    flex-direction: column !important;
+  }
+
+  .col.col--8, .col.col--4 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 1.5rem;
+  }
+
+  .col.col--4 {
+    order: -1; /* Put chatbot first on mobile */
+  }
+}
+
+/* Mobile-specific fixes for chatbot component */
+.chatbot-container {
+  height: auto !important;
+  max-height: 70vh;
+  min-height: 400px;
+}
+
+@media (max-width: 480px) {
+  .chatbot-container {
+    height: auto !important;
+    max-height: 65vh;
+    min-height: 350px;
+    margin: 10px 5px;
+  }
+
+  .chat-messages {
+    padding: 15px !important;
+  }
+
+  .chat-messages div[style*="alignSelf"] {
+    max-width: 90% !important;
+  }
+
+  input[type="text"] {
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+  }
+
+  button[type="submit"] {
+    padding: 12px 18px !important;
+    font-size: 14px !important;
+    min-width: 70px !important;
+  }
+}

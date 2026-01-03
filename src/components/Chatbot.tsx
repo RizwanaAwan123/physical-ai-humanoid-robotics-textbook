@@ -100,12 +100,15 @@ const Chatbot: React.FC = () => {
     <div className="chatbot-container" style={{
       display: 'flex',
       flexDirection: 'column',
-      height: '600px',
+      height: 'auto',
+      minHeight: '400px',
+      maxHeight: '70vh',
       border: '1px solid #ddd',
       borderRadius: '12px',
       overflow: 'hidden',
       backgroundColor: 'white',
-      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+      width: '100%'
     }}>
       <div className="chat-messages" style={{
         flex: 1,

@@ -7,7 +7,7 @@ function ChatPage() {
     <Layout title="Chat with AI Assistant" description="Ask questions about Physical AI & Humanoid Robotics textbook">
       <div className="container margin-vert--lg">
         <div className="row">
-          <div className="col col--8">
+          <div className="col col--12">
             <div className="text--center padding-horiz--md">
               <h1>📚 Physical AI & Humanoid Robotics</h1>
               <p>Ask questions about the textbook content using the chat assistant.</p>
@@ -22,8 +22,8 @@ function ChatPage() {
               </div>
             </div>
           </div>
-          <div className="col col--4">
-            <div style={{ position: 'sticky', top: '20px' }}>
+          <div className="col col--12">
+            <div style={{ position: 'relative', top: '0px' }}>
               <h3 style={{ textAlign: 'center' }}>🤖 Chat Assistant</h3>
               <Chatbot />
             </div>

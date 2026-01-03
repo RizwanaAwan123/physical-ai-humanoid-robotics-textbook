@@ -58,6 +58,13 @@ const config: Config = {
     },
   ],
 
+  // Additional metadata for mobile
+  themes: [],
+
+  plugins: [
+    './src/plugins/docusaurus-proxy-plugin',
+  ],
+
   presets: [
     [
       'classic',
