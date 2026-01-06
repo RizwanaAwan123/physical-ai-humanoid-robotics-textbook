@@ -39,33 +39,50 @@ function BookOverview() {
       <div className="container">
         <div className="row">
           <div className="col col--12">
-            <div className="text--center padding-horiz--md">
-              <Heading as="h2">About This Book</Heading>
-              <p className="text--left" style={{maxWidth: '800px', margin: '0 auto', fontSize: '1.1rem'}}>
-                This comprehensive curriculum explores Physical AI - AI that lives in the real world and understands physical laws.
-                Students will design, simulate, and deploy humanoid robots using ROS 2, Gazebo, Unity, and NVIDIA Isaac.
-                This module-based approach provides hands-on experience with the complete Physical AI ecosystem.
-              </p>
+            <div className={styles.textCenter}>
+              <Heading as="h2" className={styles.sectionTitle}>About This Book</Heading>
+              <div className={styles.bookDescription}>
+                <p className="text--left">
+                  This comprehensive curriculum explores Physical AI - AI that lives in the real world and understands physical laws.
+                  Students will design, simulate, and deploy humanoid robots using ROS 2, Gazebo, Unity, and NVIDIA Isaac.
+                  This module-based approach provides hands-on experience with the complete Physical AI ecosystem.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <div className="row" style={{marginTop: '3rem'}}>
+        <div className="row" style={{marginTop: '3rem', gap: '2rem'}}>
           <div className="col col--4">
-            <div className="text--center padding-horiz--md">
-              <Heading as="h3">4 Core Modules</Heading>
-              <p>Complete curriculum from ROS 2 fundamentals to Vision-Language-Action systems</p>
+            <div className={styles.metricCard}>
+              <div className={styles.metricIcon}>
+                <svg viewBox="0 0 24 24" width="36" height="36">
+                  <path fill="white" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <Heading as="h3" className={styles.metricTitle}>4 Core Modules</Heading>
+              <p className={styles.metricDescription}>Complete curriculum from ROS 2 fundamentals to Vision-Language-Action systems</p>
             </div>
           </div>
           <div className="col col--4">
-            <div className="text--center padding-horiz--md">
-              <Heading as="h3">Capstone Project</Heading>
-              <p>Autonomous humanoid robot integrating all modules and technologies</p>
+            <div className={styles.metricCard}>
+              <div className={styles.metricIcon}>
+                <svg viewBox="0 0 24 24" width="36" height="36">
+                  <path fill="white" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <Heading as="h3" className={styles.metricTitle}>Capstone Project</Heading>
+              <p className={styles.metricDescription}>Autonomous humanoid robot integrating all modules and technologies</p>
             </div>
           </div>
           <div className="col col--4">
-            <div className="text--center padding-horiz--md">
-              <Heading as="h3">Industry-Focused</Heading>
-              <p>Real-world applications using NVIDIA Isaac, ROS 2, and modern robotics technologies</p>
+            <div className={styles.metricCard}>
+              <div className={styles.metricIcon}>
+                <svg viewBox="0 0 24 24" width="36" height="36">
+                  <path fill="white" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6L12 10.5 8.5 8 12 5.5 15.5 8zM8.5 16L12 13.5 15.5 16 12 18.5 8.5 16z"/>
+                </svg>
+              </div>
+              <Heading as="h3" className={styles.metricTitle}>Industry-Focused</Heading>
+              <p className={styles.metricDescription}>Real-world applications using NVIDIA Isaac, ROS 2, and modern robotics technologies</p>
             </div>
           </div>
         </div>
